@@ -1,37 +1,49 @@
-let question = document.getElementById("question");
-let answer = document.getElementById("answer");
-let result = document.getElementById("result");
-let next = document.getElementById("next");
-let num1, num2, op, correctAnswer;
-generateQuestion();
-document.addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  if (parseInt(answer.value) == correctAnswer) {
-    result.innerHTML = "Jawaban benar!";
-    next.style.display = "inline";
-  } else {
-    result.innerHTML = "Jawaban salah. Coba lagi!";
+class Game {
+    constructor() {
+      this.target = Math.floor(Math.random() * 100) + 1;
+      this.jumTebakan = 0;
+    }
+  
+    checkTebakan(tebak) {
+      this.jumTebakan++;
+  
+      if (tebak === this.target) {
+        return 'benar';
+      } else if (tebak < this.target) {
+        return 'rendah';
+      } else {
+        return 'tinggi';
+      }
+    }
   }
-});
-document.addEventListener("click", function(event) {
-  if (event.target.id == "next") {
-    generateQuestion();
-    answer.value = "";
-    result.innerHTML = "";
-    next.style.display = "none";
-  }
-});
-function generateQuestion() {
-  num1 = Math.floor(Math.random() * 10) + 1;
-  num2 = Math.floor(Math.random() * 10) + 1;
-  op = Math.floor(Math.random() * 2);
-
-  if (op == 0) {
-    question.innerHTML = num1 + " + " + num2 + " = ?";
-    correctAnswer = num1 + num2;
-  } else {
-    question.innerHTML = num1 + " - " + num2 + " = ?";
-    correctAnswer = num1 - num2;
-  }
-}
+  
+  // Inisialisasi permainan
+  const game = new Game();
+  
+  // Deklarasi elemen HTML
+  const angka = document.getElementById('angka');
+  const tombol = document.getElementById('tombol');
+  const jumlahTebakan = document.querySelector('.jumlah-tebakan');
+  const hasilAkhir = document.querySelector('.hasil-akhir');
+  const rendahAtauTinggi = document.querySelector('.rendah-atau-tinggi');
+  
+  // Fungsi saat tombol ditekan
+  tombol.addEventListener('click', function () {
+    const tebak = parseInt(angka.value);
+    const result = game.checkTebakan(tebak);
+  
+    hasilAkhir.textContent = result === 'benar' ? 'Selamat! Anda menebak angka yang benar!' : 'Salah! Cobalah lagi.';
+    hasilAkhir.style.backgroundColor = result === 'benar' ? 'green' : 'red';
+    hasilAkhir.style.color = 'white';
+  
+    if (result === 'rendah') {
+      rendahAtauTinggi.textContent = 'Terlalu rendah!';
+    } else if (result === 'tinggi') {
+      rendahAtauTinggi.textContent = 'Terlalu tinggi!';
+    } else {
+      rendahAtauTinggi.textContent = '';
+    }
+  
+    jumlahTebakan.textContent ='';
+    angka.value = "";
+  });

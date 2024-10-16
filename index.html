@@ -1,38 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <style>
-        body {
-        background-image: url("bg1.avif");
+<html>
+  <head><style>
+      body {
+        background-image: url("bg2.png");
               background-repeat:no-repeat;
              background-size:cover;
       } 
-    </style>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Mateematika</title>
-    <link rel="stylesheet" href='style.css'>
+      </style>
+
+<title>Tebak Angka</title>
+
 </head>
+  
+<center><h1>Selamat Datang di Permainan Tebak Angka</h1>
+
 <body>
-   <center> <h1><marquee><img src ="lucu1.gif"widht="80"height="80">Game Matematika Latihan Berhitung</marquee></h1>
-    <div id="question"></div>
-    <form>
-      <input type="number" id="answer">
-      <button type="submit">Jawab</button>
-    </form>
-    <div id="result"></div>
-    <button id="next">Selanjutnya</button>
-  <table border="1"cellpaddling="9">
-<tr>
-<td bgcolor="pink"><a href="game_2/index.html">game tebak angka</a></td>
-</tr>
-  </table>
-     <img src="lucu2.gif"width="200"height="200">
-     <audio id="audio"autoplay loop>
-        <source src=".audio.mp3" type="audio/mp3"> 
-   </audio>
-   </center>
-    <script src="script.js"></script>
+
+<p>Saya telah memilih angka antara 1 dan 100. Cobalah untuk menebaknya!</p>
+
+<input type="number" id="angka">
+
+<input type="submit" value="Tebak" id="tombol">
+
+<div class="hasil">
+
+<p class="jumlah-tebakan"></p>
+
+<p class="hasil-akhir"></p>
+
+<p class="rendah-atau-tinggi"></p>
+
+</div>
+
+<script src="script.js"></script>
+<img src="lucu.gif"width="200"height="200">
+
 </body>
-        </html>
+</center>
+
+</html>
